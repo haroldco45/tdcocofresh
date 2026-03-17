@@ -5,127 +5,183 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coco Fresh - Tarjeta Digital</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --yellow: #f9e107; --green: #1a5c1a; --white: #ffffff; }
+        :root {
+            --coco-green: #4CAF50;
+            --coco-yellow: #FFEB3B;
+            --dark-blue: #0277bd;
+            --white: #ffffff;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background: #0077b6; /* Azul Caribe */
-            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #e1f5fe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
         }
 
-        .card { 
-            width: 100%; max-width: 400px; background: var(--white); 
-            border-radius: 20px; overflow: hidden; position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        /* Tarjeta Principal */
+        .card {
+            background: var(--white);
+            width: 100%;
+            max-width: 450px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
         }
 
-        /* BANNER CON COCOS REALES */
-        .banner {
-            background: url('https://images.unsplash.com/photo-1550950158-d0d960dff51b?q=80&w=500&auto=format&fit=crop') no-repeat center;
-            background-size: cover; height: 230px; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; position: relative;
+        /* Imagen Principal (La que enviaste) */
+        .hero-image {
+            width: 100%;
+            display: block;
+            border-bottom: 5px solid var(--coco-yellow);
         }
 
-        .logo-text {
-            font-family: 'Pacifico', cursive; font-size: 52px; color: var(--yellow);
-            text-shadow: 3px 3px 0 var(--green); z-index: 2; line-height: 1;
-        }
-
-        .slogan { 
-            background: var(--green); color: white; padding: 5px 15px; 
-            border-radius: 20px; font-size: 14px; font-weight: bold; margin-top: 5px; z-index: 2;
-        }
-
-        /* CONTENIDO */
         .content { padding: 20px; text-align: center; }
 
-        .products {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;
+        .menu-title {
+            color: #2e7d32;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .product-item {
-            background: #f0fdf4; padding: 10px; border-radius: 12px; font-size: 13px;
-            border-left: 4px solid var(--green); text-align: left; display: flex; align-items: center;
+        /* Cuadrícula de productos */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
-        /* BOTONES DE ACCION */
+        .item {
+            background: #f1f8e9;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid var(--coco-green);
+        }
+
+        .item i { margin-right: 8px; color: var(--coco-green); }
+
+        /* Botonera Interactiva */
+        .btn-container { display: flex; flex-direction: column; gap: 12px; }
+
         .btn {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 15px; border-radius: 12px; text-decoration: none; color: white;
-            font-weight: bold; margin-bottom: 12px; transition: 0.3s;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+            font-size: 1rem;
         }
 
-        .btn-wa { background: #25d366; }
-        .btn-call { background: #007bff; }
-        .btn-map { background: #ff5722; }
+        .btn:active { transform: scale(0.98); }
 
-        /* FOOTER OBLIGATORIO */
+        .whatsapp { background-color: #25d366; box-shadow: 0 4px 10px rgba(37,211,102,0.3); }
+        .phone { background-color: #007bff; box-shadow: 0 4px 10px rgba(0,123,255,0.3); }
+        .maps { background-color: #ff5722; box-shadow: 0 4px 10px rgba(255,87,34,0.3); }
+
+        /* Footer y Créditos */
         .footer {
-            background: #f4f4f4; padding: 15px; font-size: 10px; color: #555;
-            border-top: 1px solid #ddd;
+            background: #fafafa;
+            padding: 20px;
+            font-size: 11px;
+            color: #666;
+            border-top: 1px solid #eee;
         }
 
-        .vibras-link { color: #e91e63; font-weight: bold; text-decoration: none; }
+        .vibras-link {
+            color: #c2185b;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-        /* BLOQUEO POR VENCIMIENTO */
-        #bloqueo {
-            display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: white; z-index: 1000; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; padding: 20px;
+        /* Pantalla de Bloqueo Suscripción */
+        #expired {
+            display: none;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div id="bloqueo">
-            <i class="fas fa-lock" style="font-size: 50px; color: red;"></i>
-            <h2>Suscripción Vencida</h2>
-            <p>Contacte a Vibras Positivas para renovar.</p>
+<div class="card">
+    <div id="expired">
+        <i class="fas fa-exclamation-triangle" style="font-size: 50px; color: #f44336; margin-bottom: 20px;"></i>
+        <h2>SERVICIO TEMPORALMENTE SUSPENDIDO</h2>
+        <p style="margin: 15px 0;">Para reactivar su tarjeta digital, contacte a su proveedor.</p>
+        <a href="tel:3117700431" class="vibras-link">LLAMAR A SOPORTE</a>
+    </div>
+
+    <img src="https://i.ibb.co/Lhb8m9P/1002011585.jpg" alt="Coco Fresh" class="hero-image">
+
+    <div class="content">
+        <h3 class="menu-title">Nuestras Delicias</h3>
+        <div class="menu-grid">
+            <div class="item"><i class="fas fa-check-circle"></i> Agua de coco</div>
+            <div class="item"><i class="fas fa-check-circle"></i> Malteadas</div>
+            <div class="item"><i class="fas fa-check-circle"></i> Limonadas</div>
+            <div class="item"><i class="fas fa-check-circle"></i> Cocoloco</div>
+            <div class="item"><i class="fas fa-check-circle"></i> Jugos Naranja</div>
+            <div class="item"><i class="fas fa-check-circle"></i> Micheladas</div>
         </div>
 
-        <div class="banner">
-            <div class="logo-text">Coco Fresh</div>
-            <div class="slogan">El dulce sabor del coco</div>
-        </div>
-
-        <div class="content">
-            <div class="products">
-                <div class="product-item">🥥 Agua de coco</div>
-                <div class="product-item">🥥 Malteadas</div>
-                <div class="product-item">🥥 Limonadas</div>
-                <div class="product-item">🥥 Cocoloco</div>
-                <div class="product-item">🥥 Jugos</div>
-                <div class="product-item">🥥 Micheladas</div>
-            </div>
-
-            <a href="https://wa.me/573153080312" class="btn btn-wa">
+        <div class="btn-container">
+            <a href="https://wa.me/573153080312" class="btn whatsapp">
                 <i class="fab fa-whatsapp"></i> PEDIR POR WHATSAPP
             </a>
-            <a href="tel:+573153080312" class="btn btn-call">
-                <i class="fas fa-phone"></i> LLAMAR AHORA
+            <a href="tel:+573153080312" class="btn phone">
+                <i class="fas fa-phone-alt"></i> LLAMAR AHORA
             </a>
-            <a href="https://www.google.com/maps/search/Parque+las+banderas+Alcaldia" target="_blank" class="btn btn-map">
+            <a href="https://www.google.com/maps?q=Parque+las+banderas+Sincelejo" target="_blank" class="btn maps">
                 <i class="fas fa-map-marker-alt"></i> VER UBICACIÓN
             </a>
         </div>
-
-        <div class="footer">
-            Ubicación: Parque las banderas, frente a la Alcaldía.<br><br>
-            <strong>APP DESARROLLADA POR <a href="tel:3117700431" class="vibras-link">VIBRAS POSITIVAS (3117700431)</a></strong><br>
-            Derechos de Autor © 2026
-        </div>
     </div>
 
-    <script>
-        // CONTROL INVISIBLE: Vence 16 de Marzo 2027
-        const vencimiento = new Date(2027, 2, 16);
-        if (new Date() > vencimiento) {
-            document.getElementById('bloqueo').style.display = 'flex';
-        }
-    </script>
+    <div class="footer">
+        <strong>📍 Parque las banderas, frente a la Alcaldía.</strong><br><br>
+        APP DESARROLLADA POR <a href="tel:3117700431" class="vibras-link">VIBRAS POSITIVAS (3117700431)</a><br>
+        © Todos los derechos reservados 2026.
+    </div>
+</div>
+
+<script>
+    // --- LÓGICA DE SUSCRIPCIÓN ---
+    // Fecha de vencimiento: 16 de Marzo de 2027
+    const expirationDate = new Date(2027, 2, 16); 
+    const currentDate = new Date();
+
+    if (currentDate > expirationDate) {
+        document.getElementById('expired').style.display = 'flex';
+    }
+</script>
+
 </body>
 </html>
