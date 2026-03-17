@@ -3,209 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coco Fresh - Tarjeta Digital Interactiva</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <title>Coco Fresh | Tarjeta Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-yellow: #f4e842;
-            --primary-green: #2d5a27;
-            --accent-blue: #00adef;
-            --white: #ffffff;
-            --shadow: 0 8px 30px rgba(0,0,0,0.15);
+            --coco-yellow: #f9e107;
+            --coco-green: #228b22;
+            --dark-green: #145214;
+            --bg-blue: #00b4d8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #87CEEB 0%, #e0f7fa 100%);
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, var(--bg-blue), #e0f7fa);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
 
-        /* Contenedor Principal */
+        /* Contenedor Principal Estilo App */
         .card {
-            background: var(--white);
+            background: #fff;
             width: 100%;
-            max-width: 400px;
-            border-radius: 30px;
-            box-shadow: var(--shadow);
+            max-width: 450px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             overflow: hidden;
-            text-align: center;
             position: relative;
-            border: 4px solid var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
         }
 
-        /* Banner Superior con Logo */
-        .header {
-            background: url('https://images.unsplash.com/photo-1550950158-d0d960dff51b?q=80&w=1000&auto=format&fit=crop') no-repeat center center;
+        /* Banner Tropical con el Logo serio */
+        .banner {
+            background: url('https://images.unsplash.com/photo-1550950158-d0d960dff51b?auto=format&fit=crop&q=80&w=800') no-repeat center center;
             background-size: cover;
-            height: 220px;
+            height: 250px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: var(--white);
             position: relative;
         }
 
-        .header::after {
+        .banner::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.2);
         }
 
-        .logo-text {
+        .logo-box {
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .logo-main {
             font-family: 'Pacifico', cursive;
-            font-size: 50px;
-            color: var(--primary-yellow);
-            text-shadow: 3px 3px 0px var(--primary-green);
+            font-size: 55px;
+            color: var(--coco-yellow);
+            text-shadow: 4px 4px 0px var(--coco-green);
             margin: 0;
+            line-height: 1;
         }
 
         .slogan {
-            position: relative;
-            z-index: 1;
-            font-size: 16px;
-            background: var(--primary-green);
-            padding: 5px 15px;
-            border-radius: 20px;
-            margin-top: -10px;
+            background: var(--coco-green);
+            color: white;
+            padding: 4px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* Cuerpo de la Tarjeta */
-        .content { padding: 25px 20px; }
+        /* Cuerpo de Información */
+        .info-section { padding: 25px; text-align: center; }
 
-        h3 { color: var(--primary-green); margin-bottom: 15px; font-weight: 600; }
+        .menu-title {
+            color: var(--dark-green);
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--coco-yellow);
+            display: inline-block;
+        }
 
-        .menu-list {
-            text-align: left;
-            font-size: 14px;
-            color: #444;
-            margin-bottom: 25px;
+        .menu-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 10px;
+            text-align: left;
+            margin-bottom: 25px;
         }
 
-        .menu-list span { display: flex; align-items: center; }
-        .menu-list span::before { content: "🥥"; margin-right: 5px; }
+        .menu-item {
+            font-size: 13px;
+            color: #333;
+            background: #f1f8e9;
+            padding: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
 
-        /* Botones Interactivos */
-        .actions { display: flex; flex-direction: column; gap: 12px; }
+        .menu-item i { color: var(--coco-green); margin-right: 8px; }
+
+        /* Botones de Acción Interactiva */
+        .action-btns { display: grid; gap: 12px; }
 
         .btn {
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 15px;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s;
-            color: white;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .btn:active { transform: scale(0.95); }
+        .btn:hover { transform: translateY(-3px); }
 
-        .whatsapp { background-color: #25d366; }
-        .phone { background-color: #007bff; }
-        .maps { background-color: #ff5722; }
+        .btn-ws { background: #25d366; }
+        .btn-tel { background: #007bff; }
+        .btn-map { background: #ff5722; }
 
-        /* Footer y Derechos */
+        /* Footer Obligatorio */
         .footer {
-            margin-top: 20px;
+            background: #f4f4f4;
             padding: 15px;
-            background: #f9f9f9;
-            font-size: 11px;
-            color: #888;
-            border-top: 1px solid #eee;
+            font-size: 10px;
+            color: #666;
+            line-height: 1.4;
         }
 
-        .vibras-link { color: #ff4081; text-decoration: none; font-weight: bold; }
+        .vibras-brand {
+            color: #d81b60;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 11px;
+        }
 
-        /* Bloqueo por Vencimiento */
-        #bloqueo {
+        /* Bloqueo Invisible por Fecha */
+        #expiration-overlay {
             display: none;
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: white;
-            z-index: 100;
+            background: #fff;
+            z-index: 999;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            padding: 40px;
+            text-align: center;
+            padding: 30px;
         }
     </style>
 </head>
 <body>
 
-    <div class="card" id="cardContainer">
-        <div id="bloqueo">
-            <i class="fas fa-lock" style="font-size: 50px; color: #ff4444; margin-bottom: 20px;"></i>
-            <h2>Suscripción Vencida</h2>
-            <p>Por favor, contacte al desarrollador para renovar su tarjeta digital.</p>
-            <br>
-            <a href="https://wa.me/573117700431" class="vibras-link">Vibras Positivas</a>
+    <div class="card" id="mainCard">
+        <div id="expiration-overlay">
+            <i class="fas fa-calendar-times" style="font-size: 60px; color: #ff5252;"></i>
+            <h2 style="margin: 20px 0;">Servicio Suspendido</h2>
+            <p>La suscripción de esta tarjeta digital ha vencido.</p>
+            <a href="tel:3117700431" class="vibras-brand">CONTACTAR SOPORTE</a>
         </div>
 
-        <div class="header">
-            <h1 class="logo-text">Coco Fresh</h1>
-            <div class="slogan">El dulce sabor del coco</div>
+        <div class="banner">
+            <div class="logo-box">
+                <h1 class="logo-main">Coco Fresh</h1>
+                <div class="slogan">El dulce sabor del coco</div>
+            </div>
         </div>
 
-        <div class="content">
-            <h3>Nuestro Menú</h3>
-            <div class="menu-list">
-                <span>Agua de Coco</span>
-                <span>Malteadas</span>
-                <span>Limonadas</span>
-                <span>Cocoloco</span>
-                <span>Jugos</span>
-                <span>Micheladas</span>
+        <div class="info-section">
+            <h3 class="menu-title">Nuestro Catálogo</h3>
+            <div class="menu-grid">
+                <div class="menu-item"><i class="fas fa-tint"></i> Agua de coco</div>
+                <div class="menu-item"><i class="fas fa-ice-cream"></i> Malteadas</div>
+                <div class="menu-item"><i class="fas fa-lemon"></i> Limonadas</div>
+                <div class="menu-item"><i class="fas fa-cocktail"></i> Cocoloco</div>
+                <div class="menu-item"><i class="fas fa-glass-whiskey"></i> Jugos Naranja</div>
+                <div class="menu-item"><i class="fas fa-beer"></i> Micheladas</div>
             </div>
 
-            <div class="actions">
-                <a href="https://wa.me/573153080312?text=Hola%20Coco%20Fresh,%20quiero%20hacer%20un%20pedido" class="btn whatsapp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
+            <div class="action-btns">
+                <a href="https://wa.me/573153080312" class="btn btn-ws">
+                    <i class="fab fa-whatsapp fa-lg"></i> WHATSAPP
                 </a>
-                <a href="tel:+573153080312" class="btn phone">
-                    <i class="fas fa-phone-alt"></i> Llamar Directo
+                <a href="tel:+573153080312" class="btn btn-tel">
+                    <i class="fas fa-phone-alt"></i> LLAMAR AHORA
                 </a>
-                <a href="https://www.google.com/maps/search/Parque+las+banderas+frente+alcaldia" target="_blank" class="btn maps">
-                    <i class="fas fa-map-marker-alt"></i> Cómo llegar
+                <a href="https://www.google.com/maps/search/Parque+las+banderas+frente+alcaldia" target="_blank" class="btn btn-map">
+                    <i class="fas fa-map-marker-alt"></i> VER UBICACIÓN
                 </a>
             </div>
         </div>
 
         <div class="footer">
-            Ubicación: Parque las banderas, frente a la Alcaldía.<br><br>
-            APP DESARROLLADA POR <a href="tel:3117700431" class="vibras-link">VIBRAS POSITIVAS (3117700431)</a><br>
-            © Derechos de Autor 2026
+            Dirección: Parque las banderas, frente a la Alcaldía.<br>
+            <strong>APP DESARROLLADA POR <a href="tel:3117700431" class="vibras-brand">VIBRAS POSITIVAS (3117700431)</a></strong><br>
+            © Derechos de Autor 2026 - Colombia
         </div>
     </div>
 
     <script>
-        // --- CONTROL DE SUSCRIPCIÓN INVISIBLE ---
-        // Fecha de vencimiento: Año, Mes (0-11), Día
-        const fechaVencimiento = new Date(2027, 2, 16); // 16 de Marzo de 2027
-        const hoy = new Date();
+        // --- CONTROL DE VENCIMIENTO INVISIBLE ---
+        // Fecha límite: 16 de Marzo de 2027
+        const limitDate = new Date(2027, 2, 16); 
+        const today = new Date();
 
-        if (hoy > fechaVencimiento) {
-            document.getElementById('bloqueo').style.display = 'flex';
+        if (today > limitDate) {
+            document.getElementById('expiration-overlay').style.display = 'flex';
         }
 
-        // --- HORA REAL COLOMBIA (Consola) ---
-        console.log("Sistema Iniciado: " + hoy.toLocaleString("es-CO", {timeZone: "America/Bogota"}));
+        // Registro de acceso para control
+        console.log("App Coco Fresh Activa - 2026");
     </script>
 </body>
 </html>
