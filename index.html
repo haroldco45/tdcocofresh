@@ -5,183 +5,187 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coco Fresh - Tarjeta Digital</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --coco-green: #4CAF50;
-            --coco-yellow: #FFEB3B;
-            --dark-blue: #0277bd;
+            --green: #2e7d32;
+            --yellow: #f9e107;
             --white: #ffffff;
+            --bg: #e3f2fd;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: #e1f5fe;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 10px;
+            padding: 15px;
         }
 
-        /* Tarjeta Principal */
+        /* Contenedor Principal */
         .card {
             background: var(--white);
             width: 100%;
-            max-width: 450px;
-            border-radius: 25px;
+            max-width: 420px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
             position: relative;
         }
 
-        /* Imagen Principal (La que enviaste) */
-        .hero-image {
+        /* Imagen Superior (La que enviaste) */
+        .header-img {
             width: 100%;
             display: block;
-            border-bottom: 5px solid var(--coco-yellow);
+            border-bottom: 6px solid var(--yellow);
         }
 
-        .content { padding: 20px; text-align: center; }
+        .body-content {
+            padding: 25px 20px;
+            text-align: center;
+        }
 
-        .menu-title {
-            color: #2e7d32;
-            font-size: 1.2rem;
+        .section-title {
+            color: var(--green);
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* Cuadrícula de productos */
-        .menu-grid {
+        /* Lista de Productos */
+        .products-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 25px;
         }
 
-        .item {
+        .p-item {
             background: #f1f8e9;
             padding: 10px;
-            border-radius: 10px;
-            font-size: 0.85rem;
+            border-radius: 12px;
+            font-size: 13px;
             color: #333;
             display: flex;
             align-items: center;
-            border-left: 4px solid var(--coco-green);
+            border-left: 4px solid var(--green);
         }
 
-        .item i { margin-right: 8px; color: var(--coco-green); }
+        .p-item i { margin-right: 8px; color: var(--green); }
 
-        /* Botonera Interactiva */
-        .btn-container { display: flex; flex-direction: column; gap: 12px; }
+        /* Botones de Acción */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
         .btn {
             text-decoration: none;
-            padding: 15px;
-            border-radius: 15px;
+            padding: 16px;
+            border-radius: 18px;
             color: white;
             font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            transition: 0.3s;
+            gap: 12px;
+            transition: all 0.3s ease;
             font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .btn:active { transform: scale(0.98); }
+        .btn:active { transform: scale(0.96); }
 
-        .whatsapp { background-color: #25d366; box-shadow: 0 4px 10px rgba(37,211,102,0.3); }
-        .phone { background-color: #007bff; box-shadow: 0 4px 10px rgba(0,123,255,0.3); }
-        .maps { background-color: #ff5722; box-shadow: 0 4px 10px rgba(255,87,34,0.3); }
+        .ws { background: #25d366; }
+        .tel { background: #007bff; }
+        .map { background: #ff5722; }
 
-        /* Footer y Créditos */
+        /* Footer y Firma */
         .footer {
-            background: #fafafa;
+            background: #f9f9f9;
             padding: 20px;
-            font-size: 11px;
-            color: #666;
+            font-size: 10px;
+            color: #777;
             border-top: 1px solid #eee;
         }
 
-        .vibras-link {
-            color: #c2185b;
-            text-decoration: none;
-            font-weight: bold;
-        }
+        .footer b { color: #333; }
+        .vibras-link { color: #d81b60; text-decoration: none; font-weight: bold; }
 
-        /* Pantalla de Bloqueo Suscripción */
-        #expired {
+        /* Pantalla de Bloqueo por Pago */
+        #lock-screen {
             display: none;
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: white;
-            z-index: 9999;
+            background: var(--white);
+            z-index: 1000;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px;
+            padding: 30px;
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div id="expired">
-        <i class="fas fa-exclamation-triangle" style="font-size: 50px; color: #f44336; margin-bottom: 20px;"></i>
-        <h2>SERVICIO TEMPORALMENTE SUSPENDIDO</h2>
-        <p style="margin: 15px 0;">Para reactivar su tarjeta digital, contacte a su proveedor.</p>
-        <a href="tel:3117700431" class="vibras-link">LLAMAR A SOPORTE</a>
-    </div>
-
-    <img src="https://i.ibb.co/Lhb8m9P/1002011585.jpg" alt="Coco Fresh" class="hero-image">
-
-    <div class="content">
-        <h3 class="menu-title">Nuestras Delicias</h3>
-        <div class="menu-grid">
-            <div class="item"><i class="fas fa-check-circle"></i> Agua de coco</div>
-            <div class="item"><i class="fas fa-check-circle"></i> Malteadas</div>
-            <div class="item"><i class="fas fa-check-circle"></i> Limonadas</div>
-            <div class="item"><i class="fas fa-check-circle"></i> Cocoloco</div>
-            <div class="item"><i class="fas fa-check-circle"></i> Jugos Naranja</div>
-            <div class="item"><i class="fas fa-check-circle"></i> Micheladas</div>
+    <div class="card">
+        <div id="lock-screen">
+            <i class="fas fa-calendar-times" style="font-size: 60px; color: #ff5252;"></i>
+            <h2 style="margin: 20px 0;">Suscripción Expirada</h2>
+            <p>Por favor contacte a soporte para habilitar su tarjeta.</p>
+            <br>
+            <a href="tel:3117700431" class="vibras-link">Vibras Positivas</a>
         </div>
 
-        <div class="btn-container">
-            <a href="https://wa.me/573153080312" class="btn whatsapp">
-                <i class="fab fa-whatsapp"></i> PEDIR POR WHATSAPP
-            </a>
-            <a href="tel:+573153080312" class="btn phone">
-                <i class="fas fa-phone-alt"></i> LLAMAR AHORA
-            </a>
-            <a href="https://www.google.com/maps?q=Parque+las+banderas+Sincelejo" target="_blank" class="btn maps">
-                <i class="fas fa-map-marker-alt"></i> VER UBICACIÓN
-            </a>
+        <img src="https://i.ibb.co/Lhb8m9P/1002011585.jpg" alt="Coco Fresh" class="header-img">
+
+        <div class="body-content">
+            <h3 class="section-title">Nuestra Carta</h3>
+            <div class="products-grid">
+                <div class="p-item"><i class="fas fa-coconut"></i> Agua de coco</div>
+                <div class="p-item"><i class="fas fa-coconut"></i> Malteadas</div>
+                <div class="p-item"><i class="fas fa-coconut"></i> Limonadas</div>
+                <div class="p-item"><i class="fas fa-coconut"></i> Cocoloco</div>
+                <div class="p-item"><i class="fas fa-coconut"></i> Jugos Naranja</div>
+                <div class="p-item"><i class="fas fa-coconut"></i> Micheladas</div>
+            </div>
+
+            <div class="actions">
+                <a href="https://wa.me/573153080312" class="btn ws">
+                    <i class="fab fa-whatsapp"></i> WHATSAPP
+                </a>
+                <a href="tel:+573153080312" class="btn tel">
+                    <i class="fas fa-phone-alt"></i> LLAMAR AHORA
+                </a>
+                <a href="https://www.google.com/maps/search/Parque+las+banderas+Alcaldía" target="_blank" class="btn map">
+                    <i class="fas fa-map-marker-alt"></i> CÓMO LLEGAR
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <b>📍 Ubicación:</b> Parque las banderas, frente a la Alcaldía.<br><br>
+            APP DESARROLLADA POR <a href="tel:3117700431" class="vibras-link">VIBRAS POSITIVAS (3117700431)</a><br>
+            Derechos de Autor © 2026
         </div>
     </div>
 
-    <div class="footer">
-        <strong>📍 Parque las banderas, frente a la Alcaldía.</strong><br><br>
-        APP DESARROLLADA POR <a href="tel:3117700431" class="vibras-link">VIBRAS POSITIVAS (3117700431)</a><br>
-        © Todos los derechos reservados 2026.
-    </div>
-</div>
+    <script>
+        // --- CONTROL DE PAGO INVISIBLE ---
+        // Vencimiento: 16 de Marzo de 2027
+        const limitDate = new Date(2027, 2, 16); 
+        const today = new Date();
 
-<script>
-    // --- LÓGICA DE SUSCRIPCIÓN ---
-    // Fecha de vencimiento: 16 de Marzo de 2027
-    const expirationDate = new Date(2027, 2, 16); 
-    const currentDate = new Date();
-
-    if (currentDate > expirationDate) {
-        document.getElementById('expired').style.display = 'flex';
-    }
-</script>
-
+        if (today > limitDate) {
+            document.getElementById('lock-screen').style.display = 'flex';
+        }
+    </script>
 </body>
 </html>
