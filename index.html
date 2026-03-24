@@ -42,13 +42,19 @@
 
         .menu-item {
             background: #f1f8e9; padding: 12px; border-radius: 15px;
-            font-size: 13px; display: flex; align-items: center;
+            font-size: 12px; display: flex; align-items: center;
             border-left: 4px solid var(--coco-green); cursor: pointer;
             transition: 0.3s; font-weight: 600;
         }
 
         .menu-item:hover { background: var(--coco-yellow); transform: scale(1.02); }
         .menu-item i { margin-right: 8px; color: var(--coco-green); }
+
+        .section-label {
+            grid-column: span 2; color: var(--coco-green); font-size: 14px;
+            font-weight: 700; text-align: left; margin: 10px 0 5px 5px;
+            border-bottom: 1px solid #ddd;
+        }
 
         /* Botones de Acción */
         .actions { display: flex; flex-direction: column; gap: 12px; }
@@ -70,7 +76,7 @@
             background: rgba(0,0,0,0.8); justify-content: center; align-items: center;
         }
         .modal-content { max-width: 90%; max-height: 80%; border-radius: 15px; border: 5px solid white; }
-        .close-modal { position: absolute; top: 20px; right: 20px; color: white; font-size: 30px; cursor: pointer; }
+        .close-modal { position: absolute; top: 20px; right: 20px; color: white; font-size: 40px; cursor: pointer; }
 
         .footer { background: #f5f5f5; padding: 20px; font-size: 11px; color: #666; border-top: 1px solid #eee; }
         .vibras-link { color: #d81b60; font-weight: bold; text-decoration: none; }
@@ -99,19 +105,29 @@
             <p class="slogan">El dulce sabor del coco</p>
 
             <div class="menu-grid">
+                <div class="section-label">Clásicos</div>
                 <div class="menu-item" onclick="verFoto('aguadecoco.jpeg')"><i class="fas fa-eye"></i> Agua de coco</div>
-                <div class="menu-item" onclick="verFoto('malteadadecoco.jpeg')"><i class="fas fa-eye"></i> Malteadas</div>
-                <div class="menu-item" onclick="verFoto('limonadadecoco.jpeg')"><i class="fas fa-eye"></i> Limonada Coco</div>
                 <div class="menu-item" onclick="verFoto('cocoloco.jpeg')"><i class="fas fa-eye"></i> Cocoloco</div>
-                <div class="menu-item" onclick="verFoto('jugodenaranja.jpeg')"><i class="fas fa-eye"></i> Jugo Naranja</div>
+                
+                <div class="section-label">Malteadas de Coco</div>
+                <div class="menu-item" onclick="verFoto('malteadadecoco.jpeg')"><i class="fas fa-eye"></i> Sencilla</div>
+                <div class="menu-item" onclick="verFoto('malteadadecoco.jpeg')"><i class="fas fa-eye"></i> Especial</div>
+                
+                <div class="section-label">Refrescantes</div>
+                <div class="menu-item" onclick="verFoto('limonadadecoco.jpeg')"><i class="fas fa-eye"></i> Limonada Coco</div>
                 <div class="menu-item" onclick="verFoto('limonadas.jpeg')"><i class="fas fa-eye"></i> Limonadas</div>
-                <div class="menu-item" style="opacity: 0.6; cursor: default;"><i class="fas fa-hourglass-half"></i> Micheladas</div>
+                <div class="menu-item" onclick="verFoto('jugodenaranja.jpeg')"><i class="fas fa-eye"></i> Jugo Naranja</div>
+
+                <div class="section-label">Micheladas</div>
+                <div class="menu-item" onclick="verFoto('micheladacerveza.jpeg')"><i class="fas fa-eye"></i> Con Cerveza</div>
+                <div class="menu-item" onclick="verFoto('micheladaensoda.jpeg')"><i class="fas fa-eye"></i> En Soda</div>
+                <div class="menu-item" onclick="verFoto('micheladaencanadadry.jpeg')"><i class="fas fa-eye"></i> Canada Dry</div>
             </div>
 
             <div class="actions">
                 <a href="https://wa.me/573153080312" class="btn btn-ws"><i class="fab fa-whatsapp fa-lg"></i> WHATSAPP</a>
                 <a href="tel:+573153080312" class="btn btn-call"><i class="fas fa-phone-alt"></i> LLAMAR AHORA</a>
-                <a href="https://www.google.com/maps?q=Parque+las+banderas,Palmira" target="_blank" class="btn btn-map"><i class="fas fa-map-marker-alt"></i> CÓMO LLEGAR</a>
+                <a href="https://www.google.com/maps?q=Parque+las+banderas+Palmira" target="_blank" class="btn btn-map"><i class="fas fa-map-marker-alt"></i> CÓMO LLEGAR</a>
             </div>
         </div>
 
@@ -123,12 +139,11 @@
     </div>
 
     <div id="myModal" class="modal">
-        <span class="close-modal" onclick="cerrarFoto()">&times;</span>
+        <span class="close-modal" onclick="cerrarFoto()">×</span>
         <img class="modal-content" id="imgModal">
     </div>
 
     <script>
-        // Función para ver fotos reales
         function verFoto(url) {
             document.getElementById("myModal").style.display = "flex";
             document.getElementById("imgModal").src = url;
@@ -137,7 +152,6 @@
             document.getElementById("myModal").style.display = "none";
         }
 
-        // Validación de Suscripción (Marzo 16, 2027)
         const fechaLimite = new Date(2027, 2, 16); 
         if (new Date() > fechaLimite) {
             document.getElementById('lock-screen').style.display = 'flex';
