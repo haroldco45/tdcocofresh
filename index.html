@@ -11,7 +11,6 @@
         :root {
             --coco-green: #2e7d32;
             --coco-yellow: #fbc02d;
-            --sky-blue: #0288d1;
             --white: #ffffff;
         }
 
@@ -20,103 +19,66 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, #e0f7fa 0%, #80deea 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 10px;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 10px;
         }
 
-        /* Contenedor de la Tarjeta */
         .card {
-            background: var(--white);
-            width: 100%;
-            max-width: 450px;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            position: relative;
-            text-align: center;
+            background: var(--white); width: 100%; max-width: 450px;
+            border-radius: 25px; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; text-align: center;
         }
 
-        /* Banner Principal con la imagen del repo */
-        .banner {
-            width: 100%;
-            display: block;
-            border-bottom: 5px solid var(--coco-yellow);
-        }
+        .banner { width: 100%; display: block; border-bottom: 5px solid var(--coco-yellow); }
 
         .content { padding: 25px; }
-
-        .title { color: var(--coco-green); font-weight: 700; font-size: 22px; margin-bottom: 5px; }
+        .title { color: var(--coco-green); font-weight: 700; font-size: 24px; margin-bottom: 5px; }
         .slogan { color: #555; font-style: italic; font-size: 14px; margin-bottom: 20px; }
 
-        /* Lista de Productos Interactiva */
+        /* Menú con Fotos Reales */
         .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 25px;
-            text-align: left;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px;
         }
 
         .menu-item {
-            background: #f1f8e9;
-            padding: 10px;
-            border-radius: 12px;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            border-left: 4px solid var(--coco-green);
+            background: #f1f8e9; padding: 12px; border-radius: 15px;
+            font-size: 13px; display: flex; align-items: center;
+            border-left: 4px solid var(--coco-green); cursor: pointer;
+            transition: 0.3s; font-weight: 600;
         }
 
+        .menu-item:hover { background: var(--coco-yellow); transform: scale(1.02); }
         .menu-item i { margin-right: 8px; color: var(--coco-green); }
 
         /* Botones de Acción */
         .actions { display: flex; flex-direction: column; gap: 12px; }
-
         .btn {
-            text-decoration: none;
-            padding: 16px;
-            border-radius: 15px;
-            color: white;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-decoration: none; padding: 16px; border-radius: 15px;
+            color: white; font-weight: 700; display: flex;
+            align-items: center; justify-content: center; gap: 10px;
+            transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
-        .btn:active { transform: scale(0.97); }
 
         .btn-ws { background: #25d366; }
         .btn-call { background: #007bff; }
         .btn-map { background: #ff5722; }
 
-        /* Footer Obligatorio */
-        .footer {
-            background: #f5f5f5;
-            padding: 20px;
-            font-size: 11px;
-            color: #666;
-            border-top: 1px solid #eee;
+        /* Ventana Emergente (Modal) */
+        .modal {
+            display: none; position: fixed; z-index: 2000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); justify-content: center; align-items: center;
         }
+        .modal-content { max-width: 90%; max-height: 80%; border-radius: 15px; border: 5px solid white; }
+        .close-modal { position: absolute; top: 20px; right: 20px; color: white; font-size: 30px; cursor: pointer; }
 
+        .footer { background: #f5f5f5; padding: 20px; font-size: 11px; color: #666; border-top: 1px solid #eee; }
         .vibras-link { color: #d81b60; font-weight: bold; text-decoration: none; }
 
-        /* Pantalla de Bloqueo por Vencimiento */
         #lock-screen {
-            display: none;
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: white;
-            z-index: 1000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
+            display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 1000; flex-direction: column;
+            justify-content: center; align-items: center; padding: 40px;
         }
     </style>
 </head>
@@ -126,7 +88,7 @@
         <div id="lock-screen">
             <i class="fas fa-lock" style="font-size: 60px; color: #f44336; margin-bottom: 20px;"></i>
             <h2>SERVICIO SUSPENDIDO</h2>
-            <p style="margin: 15px 0;">La suscripción ha vencido. Contacte a soporte.</p>
+            <p style="margin: 15px 0;">Suscripción vencida. Contacte a soporte.</p>
             <a href="tel:3117700431" class="vibras-link">RENOVAR AQUÍ</a>
         </div>
 
@@ -137,46 +99,49 @@
             <p class="slogan">El dulce sabor del coco</p>
 
             <div class="menu-grid">
-                <div class="menu-item"><i class="fas fa-check"></i> Agua de coco</div>
-                <div class="menu-item"><i class="fas fa-check"></i> Malteadas</div>
-                <div class="menu-item"><i class="fas fa-check"></i> Limonadas</div>
-                <div class="menu-item"><i class="fas fa-check"></i> Cocoloco</div>
-                <div class="menu-item"><i class="fas fa-check"></i> Jugos Naturales</div>
-                <div class="menu-item"><i class="fas fa-check"></i> Micheladas</div>
+                <div class="menu-item" onclick="verFoto('aguadecoco.jpeg')"><i class="fas fa-eye"></i> Agua de coco</div>
+                <div class="menu-item" onclick="verFoto('malteadadecoco.jpeg')"><i class="fas fa-eye"></i> Malteadas</div>
+                <div class="menu-item" onclick="verFoto('limonadadecoco.jpeg')"><i class="fas fa-eye"></i> Limonada Coco</div>
+                <div class="menu-item" onclick="verFoto('cocoloco.jpeg')"><i class="fas fa-eye"></i> Cocoloco</div>
+                <div class="menu-item" onclick="verFoto('jugodenaranja.jpeg')"><i class="fas fa-eye"></i> Jugo Naranja</div>
+                <div class="menu-item" onclick="verFoto('limonadas.jpeg')"><i class="fas fa-eye"></i> Limonadas</div>
+                <div class="menu-item" style="opacity: 0.6; cursor: default;"><i class="fas fa-hourglass-half"></i> Micheladas</div>
             </div>
 
             <div class="actions">
-                <a href="https://wa.me/573153080312" class="btn btn-ws">
-                    <i class="fab fa-whatsapp fa-lg"></i> WHATSAPP
-                </a>
-                <a href="tel:+573153080312" class="btn btn-call">
-                    <i class="fas fa-phone-alt"></i> LLAMAR AHORA
-                </a>
-                <a href="https://www.google.com/maps?q=Parque+las+banderas+frente+a+la+Alcaldía" target="_blank" class="btn btn-map">
-                    <i class="fas fa-map-marker-alt"></i> CÓMO LLEGAR
-                </a>
+                <a href="https://wa.me/573153080312" class="btn btn-ws"><i class="fab fa-whatsapp fa-lg"></i> WHATSAPP</a>
+                <a href="tel:+573153080312" class="btn btn-call"><i class="fas fa-phone-alt"></i> LLAMAR AHORA</a>
+                <a href="https://www.google.com/maps?q=Parque+las+banderas,Palmira" target="_blank" class="btn btn-map"><i class="fas fa-map-marker-alt"></i> CÓMO LLEGAR</a>
             </div>
         </div>
 
         <div class="footer">
             📍 Parque las banderas, frente a la Alcaldía.<br><br>
             <strong>APP DESARROLLADA POR <a href="tel:3117700431" class="vibras-link">VIBRAS POSITIVAS (3117700431)</a></strong><br>
-            © Derechos de Autor 2026 - Colombia
+            © Derechos de Autor 2026
         </div>
     </div>
 
-    <script>
-        // --- VALIDACIÓN DE SUSCRIPCIÓN ---
-        // Vencimiento: 16 de Marzo de 2027
-        const fechaLimite = new Date(2027, 2, 16); 
-        const fechaHoy = new Date();
+    <div id="myModal" class="modal">
+        <span class="close-modal" onclick="cerrarFoto()">&times;</span>
+        <img class="modal-content" id="imgModal">
+    </div>
 
-        if (fechaHoy > fechaLimite) {
-            document.getElementById('lock-screen').style.display = 'flex';
+    <script>
+        // Función para ver fotos reales
+        function verFoto(url) {
+            document.getElementById("myModal").style.display = "flex";
+            document.getElementById("imgModal").src = url;
+        }
+        function cerrarFoto() {
+            document.getElementById("myModal").style.display = "none";
         }
 
-        // Hora actual Colombia log
-        console.log("Acceso: " + new Date().toLocaleString("es-CO"));
+        // Validación de Suscripción (Marzo 16, 2027)
+        const fechaLimite = new Date(2027, 2, 16); 
+        if (new Date() > fechaLimite) {
+            document.getElementById('lock-screen').style.display = 'flex';
+        }
     </script>
 </body>
 </html>
